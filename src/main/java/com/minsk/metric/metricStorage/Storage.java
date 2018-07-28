@@ -1,11 +1,13 @@
 package com.minsk.metric.metricStorage;
 
-public interface Storage<T extends Comparable<T>> {
+import java.time.Instant;
+
+public interface Storage {
     /**
-     * saves new comparable item to storage
+     * saves new Instant item item to storage
      * @param timeStamp
      */
-    void saveItem(T timeStamp);
+    void saveItem(Instant timeStamp);
 
     /**
      * counts all items in last 24 hours

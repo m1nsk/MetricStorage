@@ -22,7 +22,7 @@ public class StorageImpl implements Storage {
     }
 
     @Override
-    public void saveItem(Comparable timeStamp) {
+    public void saveItem(Instant timeStamp) {
         storage.add(new Item(timeStamp));
 
     }
@@ -60,23 +60,23 @@ public class StorageImpl implements Storage {
         storage.headSet(new Item(getTimeInterval(fullDay))).clear();
     }
 
-    static class Item<T extends Comparable<T>> implements Comparable<Item<T>> {
+    static class Item implements Comparable<Item> {
         private static AtomicLong idAtomic = new AtomicLong(0);
         private Long id;
-        T instant;
+        Instant instant;
 
-        Item(T instant) {
+        Item(Instant instant) {
             this.instant = instant;
             this.id = idAtomic.incrementAndGet();
         }
 
-        Item(T instant, Long id) {
+        Item(Instant instant, Long id) {
             this.id = id;
             this.instant = instant;
         }
 
         @Override
-        public int compareTo(Item<T> o) {
+        public int compareTo(Item o) {
             int result = this.instant.compareTo(o.instant);
             return result == 0 ? id.compareTo(o.id) : result;
         }
@@ -85,7 +85,7 @@ public class StorageImpl implements Storage {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            Item<?> item = (Item<?>) o;
+            Item item = (Item) o;
             return Objects.equals(id, item.id) &&
                     Objects.equals(instant, item.instant);
         }
