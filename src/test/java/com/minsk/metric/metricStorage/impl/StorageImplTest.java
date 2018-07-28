@@ -42,4 +42,5 @@ class StorageImplTest {
         storage.saveItem(Instant.now().minusSeconds(1));
         assertEquals(1, storage.countMinute());
     }
+
 }

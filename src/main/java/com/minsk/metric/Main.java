@@ -9,6 +9,9 @@ import java.time.Instant;
 public class Main {
 
     public static void main(String[] args) {
+        /*
+            Example of usage Metric storage lib
+         */
         Storage storage = StorageImpl.getInstance();
         Thread gcThread = new Thread(new MetricGC(storage, 1_000_000));
         gcThread.setDaemon(true);
