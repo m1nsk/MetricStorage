@@ -1,6 +1,6 @@
 package com.minsk.metric.metricStorage.impl;
 
-import com.minsk.metric.metricStorage.Storage;
+import com.minsk.metric.metricStorage.MetricStorage;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
@@ -11,7 +11,7 @@ class MetricStorageImplTest {
 
     @Test
     void saveItem() {
-        Storage storage = new MetricStorageImpl();
+        MetricStorage storage = new MetricStorageImpl();
         storage.saveItem(Instant.now());
         storage.saveItem(Instant.now().minusSeconds(61));
         storage.saveItem(Instant.now().minusSeconds(60).plusMillis(100));
@@ -30,7 +30,7 @@ class MetricStorageImplTest {
 
     @Test
     void count24Hour() {
-        Storage storage = new MetricStorageImpl();
+        MetricStorage storage = new MetricStorageImpl();
         storage.saveItem(Instant.now().minusSeconds(60 * 60 * 24).plusSeconds(1));
         storage.saveItem(Instant.now().minusSeconds(60 * 60 * 23));
         storage.saveItem(Instant.now().minusSeconds(60 * 60 * 24).minusSeconds(1));
@@ -43,7 +43,7 @@ class MetricStorageImplTest {
 
     @Test
     void countHour() {
-        Storage storage = new MetricStorageImpl();
+        MetricStorage storage = new MetricStorageImpl();
         storage.saveItem(Instant.now().minusSeconds(60 * 60).plusSeconds(1));
         storage.saveItem(Instant.now().minusSeconds(60 * 60));
         storage.saveItem(Instant.now().minusSeconds(60 * 60).minusSeconds(1));
@@ -56,7 +56,7 @@ class MetricStorageImplTest {
 
     @Test
     void countMinute() {
-        Storage storage = new MetricStorageImpl();
+        MetricStorage storage = new MetricStorageImpl();
         storage.saveItem(Instant.now().minusSeconds(60).plusSeconds(1));
         storage.saveItem(Instant.now().minusSeconds(60));
         storage.saveItem(Instant.now().minusSeconds(60).minusSeconds(1));

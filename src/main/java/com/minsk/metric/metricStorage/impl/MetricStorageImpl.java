@@ -1,27 +1,27 @@
 package com.minsk.metric.metricStorage.impl;
 
-import com.minsk.metric.metricStorage.Storage;
+import com.minsk.metric.metricStorage.MetricStorage;
 
 import java.time.Instant;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class MetricStorageImpl implements Storage {
+public class MetricStorageImpl implements MetricStorage {
     private final static int minute = 60;
     private final static int hour = minute * 60;
     private final static int fullDay = hour * 24;
     private ConcurrentSkipListSet<Item> storage = new ConcurrentSkipListSet<>();
 
     private static class SingletonHolder {
-        static final Storage instance = new MetricStorageImpl();
+        static final MetricStorage instance = new MetricStorageImpl();
     }
 
-    public static Storage getInstance() {
+    public static MetricStorage getInstance() {
         return SingletonHolder.instance;
     }
 
-    protected MetricStorageImpl() {
+    private MetricStorageImpl() {
     }
 
     @Override
