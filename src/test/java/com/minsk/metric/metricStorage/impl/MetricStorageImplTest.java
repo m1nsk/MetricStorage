@@ -51,7 +51,7 @@ class MetricStorageImplTest {
         storage.saveItem(Instant.now().minusSeconds(60 * 60).plusMillis(100));
         storage.saveItem(Instant.now().minusSeconds(60 * 60));
         storage.saveItem(Instant.now().minusSeconds(60 * 60).minusMillis(100));
-        assertEquals(1, storage.countHour());
+        assertEquals(2, storage.countHour());
     }
 
     @Test
@@ -64,7 +64,7 @@ class MetricStorageImplTest {
         storage.saveItem(Instant.now().minusSeconds(60).plusMillis(100));
         storage.saveItem(Instant.now().minusSeconds(60));
         storage.saveItem(Instant.now().minusSeconds(60).minusMillis(100));
-        assertEquals(1, storage.countMinute());
+        assertEquals(2, storage.countMinute());
     }
 
 }
