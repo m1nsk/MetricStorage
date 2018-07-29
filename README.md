@@ -1,5 +1,7 @@
      
      Simple metric storage lib
+     Example of usage: metricStorage/src/main/java/com/minsk/metric/Main.java
+
 
       /**
      * saves new Instant item to storage
