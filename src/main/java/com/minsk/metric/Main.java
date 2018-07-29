@@ -2,7 +2,7 @@ package com.minsk.metric;
 
 import com.minsk.metric.metricGC.MetricGC;
 import com.minsk.metric.metricStorage.Storage;
-import com.minsk.metric.metricStorage.impl.StorageImpl;
+import com.minsk.metric.metricStorage.impl.MetricStorageImpl;
 
 import java.time.Instant;
 
@@ -12,7 +12,7 @@ public class Main {
         /*
             Example of usage Metric storage lib
          */
-        Storage storage = StorageImpl.getInstance();
+        Storage storage = MetricStorageImpl.getInstance();
         Thread gcThread = new Thread(new MetricGC(storage, 1_000_000));
         gcThread.setDaemon(true);
         gcThread.start();

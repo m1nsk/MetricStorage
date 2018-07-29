@@ -4,7 +4,7 @@ import java.time.Instant;
 
 public interface Storage {
     /**
-     * saves new Instant item item to storage
+     * saves new Instant item to storage
      * @param timeStamp
      */
     void saveItem(Instant timeStamp);
@@ -30,8 +30,4 @@ public interface Storage {
      */
     void clearGarbage();
 
-    /**
-     * clears all data from storage
-     */
-    void clearAll();
 }
