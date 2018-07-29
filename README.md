@@ -1,8 +1,11 @@
-     /**
+     
+     Simple metric storage lib
+
+      /**
      * saves new Instant item to storage
-     * @param timeStamp
+     * @param item
      */
-    void saveItem(Instant timeStamp);
+    void saveItem(Instant item);
 
     /**
      * counts all items in last 24 hours
