@@ -25,8 +25,8 @@ public class MetricStorageImpl implements MetricStorage {
     }
 
     @Override
-    public void saveItem(Instant timeStamp) {
-        storage.add(new Item(timeStamp));
+    public void saveItem(Instant item) {
+        storage.add(new Item(item));
 
     }
 
