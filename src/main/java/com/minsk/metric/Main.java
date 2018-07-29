@@ -1,6 +1,5 @@
 package com.minsk.metric;
 
-import com.minsk.metric.metricGC.MetricGC;
 import com.minsk.metric.metricStorage.Storage;
 import com.minsk.metric.metricStorage.impl.MetricStorageImpl;
 
@@ -13,7 +12,17 @@ public class Main {
             Example of usage Metric storage lib
          */
         Storage storage = MetricStorageImpl.getInstance();
-        Thread gcThread = new Thread(new MetricGC(storage, 1_000_000));
+        Thread gcThread = new Thread(() -> {
+            while (storage != null) {
+                try {
+                    storage.clearGarbage();
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         gcThread.setDaemon(true);
         gcThread.start();
         storage.saveItem(Instant.now().minusSeconds(1));
@@ -24,6 +33,7 @@ public class Main {
         storage.saveItem(Instant.now().minusSeconds(60 * 60 * 23));
         storage.saveItem(Instant.now().minusSeconds(60 * 60 * 25));
         storage.saveItem(Instant.now().minusSeconds(60 * 60 * 25));
+
         System.out.println(storage.countMinute());
         System.out.println(storage.countHour());
         System.out.println(storage.count24Hour());
